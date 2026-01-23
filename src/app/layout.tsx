@@ -28,7 +28,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="bg-dark text-white font-sans min-h-screen flex flex-col">
+      <body className="bg-dark text-white font-sans tracking-wide">
+
         <Header />
         <main className="flex-grow px-6 py-10">{children}</main>
         <Footer />

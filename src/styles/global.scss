@@ -18,7 +18,12 @@ a {
   }
 }
 
-h1, h2, h3, h4 {
+h1 {
+  color: $color-white;
+  font-weight: bold;
+}
+
+h2, h3, h4 {
   color: $color-neon-purple;
   font-weight: bold;
 }
