@@ -1,0 +1,13 @@
+@use '../variables' as *;
+
+.header {
+  box-shadow: 0 2px 10px rgba($color-violet, 0.5);
+  transition: all 0.3s ease;
+
+  nav a {
+    &:hover {
+      color: $color-neon-purple;
+      text-shadow: 0 0 8px $color-neon-purple;
+    }
+  }
+}
