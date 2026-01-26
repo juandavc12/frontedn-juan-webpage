@@ -1,12 +1,15 @@
+import { Gadget } from "@/types/gadget";
 import "../styles/components/card.scss";
+import Link from "next/link";
 
 
-
-export default function Card () {
+export default function Card({ name, description, route }: Gadget) {
     return (
+        <Link href={route}>
         <div className="card">
-            <h1>Clima</h1>
-            <p>Consulta el clima actual</p>
+            <h1>{name}</h1>
+            <p>{description}</p>
         </div>
+        </Link>
     );
 }

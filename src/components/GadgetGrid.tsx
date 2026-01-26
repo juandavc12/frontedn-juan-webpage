@@ -6,7 +6,7 @@ export default function GadgetGrid() {
     return(
         <div className="w-full max-w-[650px] mx-auto grid grid-cols-2 gap-4">
             {gadgets.map((gadget) => (
-                <Card />
+                <Card key={gadget.id} {...gadget} />
             ))}
         </div>
     )

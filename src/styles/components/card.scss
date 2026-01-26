@@ -10,6 +10,7 @@
     border: 1px solid $color-violet;
     box-shadow: 0 0 12px rgba(124, 58, 237, 0.6);
     position: relative;
+    height: 100%;
 
     @media (min-width: 768px){
     opacity: 1;
