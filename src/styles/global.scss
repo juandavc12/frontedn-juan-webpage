@@ -41,3 +41,10 @@ button {
     background-color: $color-neon-purple;
   }
 }
+
+
+.gridTest {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
