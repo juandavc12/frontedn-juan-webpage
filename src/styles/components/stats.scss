@@ -1,0 +1,66 @@
+@use '../_variables' as *;
+
+.quick-stats {
+  background-color: rgba(10, 10, 15, 0.6);
+  border: 1px solid $color-violet;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  color: $color-white;
+
+  h4 {
+    color: $color-neon-purple;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+
+    div {
+      background-color: rgba(124, 58, 237, 0.1);
+      border: 1px solid $color-violet;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      text-align: center;
+
+      span {
+        display: block;
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+
+      strong {
+        color: $color-neon-purple;
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .stats-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      flex: 1;
+      background-color: $color-violet;
+      color: $color-white;
+      border: none;
+      border-radius: 0.375rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $color-neon-purple;
+      }
+
+      &.outline {
+        background: transparent;
+        border: 1px solid $color-violet;
+      }
+    }
+  }
+}

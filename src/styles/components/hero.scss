@@ -16,8 +16,7 @@
   .hero-left {
     display: flex;
     justify-content: center;
-    
-;
+
     .hero-img {
       max-width: 400px;
       position: fixed;
@@ -73,5 +72,37 @@
         box-shadow: 0 0 12px rgba($color-neon-purple, 0.6);
       }
     }
+  }
+}
+
+
+.weather-hero {
+  background: linear-gradient(90deg, $color-violet, $color-neon-purple);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  color: $color-white;
+
+  .hero-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .temp {
+    font-size: 3rem;
+    color: $color-neon-purple;
+    text-shadow: 0 0 6px rgba(168,85,247,0.35);
+  }
+
+  .time {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .conditions {
+    font-size: 1rem;
+    color: $color-violet;
+    font-weight: 500;
   }
 }
