@@ -22,6 +22,7 @@ export interface QuickStats {
   wind_speed: number;
   pressure: number;
   feels_like: number;
+  precipitation: number;
 }
 
 export interface WeatherApiResponse {
@@ -40,4 +41,5 @@ export interface WeatherApiResponse {
 export interface WeatherContextType {
   weather: WeatherApiResponse | null;
   loading: boolean;
+  refresh: () => Promise<void>;
 }

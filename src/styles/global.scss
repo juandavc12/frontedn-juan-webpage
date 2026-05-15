@@ -1,20 +1,15 @@
-@use './variables.scss' as *;
+@use './_variables' as *;
 
 body {
-  background-color: $color-dark;
-  color: white;
-  font-family: 'Inter', sans-serif;
+  background:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(124, 58, 237, 0.22), transparent),
+    radial-gradient(ellipse 50% 40% at 100% 50%, rgba(168, 85, 247, 0.08), transparent),
+    $color-dark;
+  color: $color-white;
+  font-family: $font-family-base;
   margin: 0;
   padding: 0;
   line-height: 1.6;
-  
-}
-
-.text-neonPurple {
-  color: $color-neon-purple;
-  text-shadow: 0 0 6px rgba(168,85,247,0.35);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -26,33 +21,21 @@ a {
   }
 }
 
-h1 {
-  color: $color-white;
-  font-weight: bold;
-}
-
-h2, h3, h4 {
+h1, h2, h3, h4 {
+  font-weight: 600;
   color: $color-neon-purple;
-  font-weight: bold;
 }
 
 button {
   background-color: $color-violet;
-  color: white;
+  color: $color-white;
   border: none;
+  border-radius: $border-radius;
   padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
     background-color: $color-neon-purple;
   }
-}
-
-
-.gridTest {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding: 10px;
 }

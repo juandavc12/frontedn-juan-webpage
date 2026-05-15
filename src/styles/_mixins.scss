@@ -1,0 +1,37 @@
+@use 'variables' as *;
+
+@mixin glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  border-radius: 16px;
+  box-shadow:
+    0 0 24px rgba(168, 85, 247, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+@mixin card-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: $color-white;
+  letter-spacing: 0.02em;
+}
+
+@mixin neon-glow-line {
+  height: 2px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(168, 85, 247, 0.2) 15%,
+    #a855f7 50%,
+    rgba(168, 85, 247, 0.2) 85%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 12px rgba(168, 85, 247, 0.9),
+    0 0 28px rgba(168, 85, 247, 0.45);
+}

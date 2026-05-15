@@ -1,27 +1,53 @@
 @use '../variables' as *;
 
 .header {
-  box-shadow: 0 2px 10px rgba($color-violet, 0.5);
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $color-violet;
+  background: transparent;
 
-  .content {
+  &__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: calc(var(--spacing) * 6);
     width: 100%;
-    max-width: 768px;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 1.25rem;
   }
 
+  &__time {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
 
-  nav a {
-    &:hover {
-      color: $color-neon-purple;
-      text-shadow: 0 0 8px $color-neon-purple;
+  &__clock {
+    color: $color-neon-purple;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.45);
+  }
+
+  &__temp {
+    color: rgba($color-white, 0.85);
+    font-size: 0.8rem;
+  }
+
+  &__loading {
+    color: rgba($color-white, 0.45);
+  }
+
+  nav {
+    display: flex;
+    gap: 1.75rem;
+    font-size: 0.95rem;
+
+    a {
+      color: $color-violet;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+
+      &:hover {
+        color: $color-neon-purple;
+        text-shadow: 0 0 10px rgba(168, 85, 247, 0.55);
+      }
     }
   }
 }

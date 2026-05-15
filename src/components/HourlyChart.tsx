@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -26,36 +27,92 @@ ChartJS.register(
 );
 
 export default function HourlyChart() {
-  const { weather } = useWeather();
-  if (!weather?.hourly) return null;
+  const { weather, loading } = useWeather();
+
+  if (loading || !weather?.hourly?.length) {
+    return (
+      <section className="hourly-chart">
+        <h3>Pronóstico por Hora</h3>
+        <p>Cargando gráfico...</p>
+      </section>
+    );
+  }
+
+  const hourly = weather.hourly.filter((h) => {
+    const hour = parseInt(h.time.slice(11, 13), 10);
+    return hour >= 7 && hour <= 19;
+  });
+
+  const points = hourly.length > 0 ? hourly : weather.hourly.slice(0, 13);
+  const temps = points.map((h) => h.temperature);
+  const yMin = Math.floor(Math.min(...temps)) - 1;
+  const yMax = Math.ceil(Math.max(...temps)) + 1;
 
   const data = {
-    labels: weather.hourly.map((h) => h.time.slice(11, 16)),
+    labels: points.map((h) => h.time.slice(11, 16)),
     datasets: [
       {
         label: "Temperatura (°C)",
-        data: weather.hourly.map((h) => h.temperature),
+        data: temps,
         borderColor: "#a855f7",
-        backgroundColor: "rgba(168,85,247,0.3)",
+        backgroundColor: "rgba(168, 85, 247, 0.12)",
         tension: 0.4,
-        pointRadius: 4,
-        pointBackgroundColor: "#a855f7",
+        fill: true,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: "#ece3f4",
+        pointBorderColor: "#a855f7",
+        pointBorderWidth: 2,
+        borderWidth: 2,
       },
     ],
   };
 
   const options = {
-    plugins: { legend: { display: false } },
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: "rgba(20, 0, 40, 0.92)",
+        borderColor: "rgba(168, 85, 247, 0.5)",
+        borderWidth: 1,
+        titleColor: "#ece3f4",
+        bodyColor: "#a855f7",
+      },
+    },
     scales: {
-      y: { ticks: { color: "#ece3f4" } },
-      x: { ticks: { color: "#ece3f4" } },
+      y: {
+        min: yMin,
+        max: yMax,
+        grid: {
+          color: "rgba(168, 85, 247, 0.12)",
+        },
+        ticks: {
+          color: "rgba(236, 227, 244, 0.65)",
+          padding: 8,
+          font: { size: 11 },
+        },
+        border: { display: false },
+      },
+      x: {
+        grid: { display: false },
+        ticks: {
+          color: "rgba(236, 227, 244, 0.55)",
+          maxRotation: 0,
+          font: { size: 11 },
+        },
+        border: { display: false },
+      },
     },
   };
 
   return (
     <section className="hourly-chart">
-      <h3 className="text-neonPurple font-semibold mb-3">Pronóstico por Hora</h3>
-      <Line data={data} options={options} />
+      <h3>Pronóstico por Hora</h3>
+      <div className="hourly-chart__canvas-wrap">
+        <Line data={data} options={options} />
+      </div>
     </section>
   );
 }

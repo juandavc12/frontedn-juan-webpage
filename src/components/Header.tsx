@@ -1,38 +1,51 @@
 "use client";
+
 import Link from "next/link";
 import "../styles/components/header.scss";
 import { useWeather } from "@/context/WeatherContext";
 
+function formatHeaderTime(isoTime: string) {
+  const date = new Date(isoTime);
+  const clock = date
+    .toLocaleTimeString("es-CO", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    })
+    .toLowerCase();
+  const dayMonth = `${date.getDate()}/${date.getMonth() + 1}`;
+  return `${clock}, ${dayMonth}`;
+}
+
 export default function Header() {
   const { weather, loading } = useWeather();
 
-  if (loading) return <span>Loading weather...</span>;
-  if (!weather?.current.time) return null;
+  const temp = weather?.current.temperature_2m;
+  const time = weather?.current.time;
 
-  const { temperature_2m: temp, time } = weather.current;
-  const date = new Date(time);
-  const formattedHour = date.toLocaleTimeString("es-CO", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-  const formattedDay = date.toLocaleDateString("es-CO", {
-    day: "2-digit",
-    month: "numeric",
-  });
-  
   return (
-    <header className="header px-6 py-4 bg-dark border-b border-violet">
-      <div className="content">
-      <div className="text-neonPurple font-bold text-xs flex flex-col items-center">
-          <span>{formattedHour} {formattedDay}</span>
-          <span>{temp}°C</span>
-      </div>
-      <nav className="flex gap-6 text-violet">
-        <Link href="/">Inicio</Link>
-        <Link href="/gadgets">Gadgets</Link>
-        <Link href="/sobre-mi">Sobre mí</Link>
-        <Link href="/contacto">Contacto</Link>
-      </nav>
+    <header className="header">
+      <div className="header__inner">
+        <div className="header__time">
+          {loading ? (
+            <span className="header__loading">...</span>
+          ) : (
+            <>
+              {time && (
+                <span className="header__clock">{formatHeaderTime(time)}</span>
+              )}
+              {temp != null && (
+                <span className="header__temp">{temp.toFixed(1)}°C</span>
+              )}
+            </>
+          )}
+        </div>
+        <nav>
+          <Link href="/">Inicio</Link>
+          <Link href="/gadgets">Gadgets</Link>
+          <Link href="/sobre-mi">Sobre mí</Link>
+          <Link href="/contacto">Contacto</Link>
+        </nav>
       </div>
     </header>
   );
