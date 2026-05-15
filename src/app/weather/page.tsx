@@ -1,3 +1,4 @@
+import WeatherIntro from "@/components/WeatherIntro";
 import WeatherHero from "@/components/WeatherHero";
 import HourlyChart from "@/components/HourlyChart";
 import DailyForecast from "@/components/DailyForecast";
@@ -7,10 +8,7 @@ import "@/styles/pages/weather.scss";
 export default function WeatherPage() {
   return (
     <div className="weather-page">
-      <header className="weather-page__intro">
-        <h1>Clima Actual</h1>
-        <p>Consulta el clima actual en Santa Marta, CO</p>
-      </header>
+      <WeatherIntro />
 
       <div className="weather-page__grid">
         <WeatherHero />

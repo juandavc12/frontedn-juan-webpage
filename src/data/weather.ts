@@ -1,19 +1,17 @@
 import { WeatherApiResponse } from "@/types/weather";
 
-export async function getWeather(): Promise<WeatherApiResponse> {
+export async function getWeather(lat: number, lon: number): Promise<WeatherApiResponse> {
   const url =
-    "https://api.open-meteo.com/v1/forecast?latitude=11.24&longitude=-74.2" +
-    "&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m" +
-    "&hourly=temperature_2m" +
-    "&daily=temperature_2m_max,temperature_2m_min";
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+    `&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m` +
+    `&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min`;
 
   const res = await fetch(url);
   if (!res.ok) throw new Error("Error al obtener clima");
 
   const data = await res.json();
 
-  // Current data
-  const weather: WeatherApiResponse = {
+  return {
     latitude: data.latitude,
     longitude: data.longitude,
     timezone: data.timezone,
@@ -29,11 +27,11 @@ export async function getWeather(): Promise<WeatherApiResponse> {
       })) ?? [],
     daily:
       data.daily?.time?.map((t: string, i: number) => ({
-      date: t,
-      min: data.daily.temperature_2m_min[i],
-      max: data.daily.temperature_2m_max[i],
-      condition: "Soleado",
-    })) ?? [],
+        date: t,
+        min: data.daily.temperature_2m_min[i],
+        max: data.daily.temperature_2m_max[i],
+        condition: "Soleado",
+      })) ?? [],
     stats: {
       humidity: data.current.relative_humidity_2m ?? 65,
       wind_speed: Math.round(data.current.wind_speed_10m ?? 18),
@@ -42,6 +40,4 @@ export async function getWeather(): Promise<WeatherApiResponse> {
       precipitation: data.current.precipitation ?? 0,
     },
   };
-
-  return weather;
 }

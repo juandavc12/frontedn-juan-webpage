@@ -1,23 +1,13 @@
 "use client";
 
 import { useWeather } from "@/context/WeatherContext";
+import { useDeviceDateTime } from "@/hooks/useDeviceDateTime";
+import { formatDeviceDateTime } from "@/utils/deviceDateTime";
 import "../styles/components/hero.scss";
-
-function formatHeroDatetime(isoTime: string) {
-  const date = new Date(isoTime);
-  const time = date
-    .toLocaleTimeString("es-CO", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    })
-    .toLowerCase();
-  const dayMonth = `${date.getDate()}/${date.getMonth() + 1}`;
-  return `${time} | ${dayMonth}`;
-}
 
 export default function WeatherHero() {
   const { weather, loading } = useWeather();
+  const now = useDeviceDateTime();
 
   if (loading || !weather) {
     return (
@@ -33,7 +23,7 @@ export default function WeatherHero() {
   return (
     <section className="weather-hero">
       <p className="weather-hero__datetime">
-        {formatHeroDatetime(current.time)}
+        {formatDeviceDateTime(now, "hero")}
       </p>
 
       <div className="weather-hero__main">

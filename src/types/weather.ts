@@ -1,6 +1,5 @@
 export interface CurrentWeather {
   temperature_2m: number;
-  relative_humidity_2m: number;
   time: string;
   condition?: string;
 }
@@ -29,17 +28,20 @@ export interface WeatherApiResponse {
   latitude: number;
   longitude: number;
   timezone: string;
-  current: {
-    temperature_2m: number;
-    time: string;
-    condition?: string;
-  };
+  current: CurrentWeather;
   hourly: HourlyPoint[];
-  daily: DailyPoint[]; 
+  daily: DailyPoint[];
   stats: QuickStats;
 }
+
+export interface LocationInfo {
+  city: string;
+  countryCode: string;
+}
+
 export interface WeatherContextType {
   weather: WeatherApiResponse | null;
+  location: LocationInfo | null;
   loading: boolean;
   refresh: () => Promise<void>;
 }

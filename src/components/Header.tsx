@@ -3,41 +3,28 @@
 import Link from "next/link";
 import "../styles/components/header.scss";
 import { useWeather } from "@/context/WeatherContext";
-
-function formatHeaderTime(isoTime: string) {
-  const date = new Date(isoTime);
-  const clock = date
-    .toLocaleTimeString("es-CO", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    })
-    .toLowerCase();
-  const dayMonth = `${date.getDate()}/${date.getMonth() + 1}`;
-  return `${clock}, ${dayMonth}`;
-}
+import { useDeviceDateTime } from "@/hooks/useDeviceDateTime";
+import { formatDeviceDateTime } from "@/utils/deviceDateTime";
 
 export default function Header() {
   const { weather, loading } = useWeather();
+  const now = useDeviceDateTime();
 
   const temp = weather?.current.temperature_2m;
-  const time = weather?.current.time;
 
   return (
     <header className="header">
       <div className="header__inner">
         <div className="header__time">
+          <span className="header__clock">
+            {formatDeviceDateTime(now, "header")}
+          </span>
           {loading ? (
-            <span className="header__loading">...</span>
+            <span className="header__loading">—</span>
           ) : (
-            <>
-              {time && (
-                <span className="header__clock">{formatHeaderTime(time)}</span>
-              )}
-              {temp != null && (
-                <span className="header__temp">{temp.toFixed(1)}°C</span>
-              )}
-            </>
+            temp != null && (
+              <span className="header__temp">{temp.toFixed(1)}°C</span>
+            )
           )}
         </div>
         <nav>
