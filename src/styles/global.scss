@@ -10,6 +10,13 @@ body {
   
 }
 
+.text-neonPurple {
+  color: $color-neon-purple;
+  text-shadow: 0 0 6px rgba(168,85,247,0.35);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 a {
   color: $color-violet;
   text-decoration: none;

@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="bg-dark text-white font-sans tracking-wide">
+      <body className="flex flex-col min-h-screen bg-dark text-white font-sans tracking-wide">
         <WeatherProvider>
           <Header />
           <main className="grow px-6 py-10">{children}</main>
