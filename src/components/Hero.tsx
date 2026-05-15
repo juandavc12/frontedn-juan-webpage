@@ -16,9 +16,9 @@ export default function Hero() {
         />
       </div>
       <div className="hero-right">
-        <h1>Hola, soy Juan</h1>
-        <h2>Gadgets Interactivos</h2>
-        <button>Explora funcional dades</button>
+        <h1>Juan</h1>
+        <h2>Interactive Gadgets</h2>
+        <button>Explore features</button>
       </div>
     </section>
   );

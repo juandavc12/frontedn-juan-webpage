@@ -5,6 +5,7 @@ import "../styles/global.scss";     // Sass personalizado
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { WeatherProvider } from "@/context/WeatherContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,10 +30,11 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="bg-dark text-white font-sans tracking-wide">
-
-        <Header />
-        <main className="flex-grow px-6 py-10">{children}</main>
-        <Footer />
+        <WeatherProvider>
+          <Header />
+          <main className="grow px-6 py-10">{children}</main>
+          <Footer />
+        </WeatherProvider>
       </body>
     </html>
   );
