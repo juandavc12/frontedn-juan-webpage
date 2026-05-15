@@ -6,7 +6,7 @@ import "../styles/components/footer.scss";
 export default function Footer() {
   return (
     <footer className="footer">
-      <p className="footer__copy">
+      <p className="footer__copy" suppressHydrationWarning>
         © {new Date().getFullYear()} Juan – Experiencias Interactivas
       </p>
       <nav className="footer__nav">

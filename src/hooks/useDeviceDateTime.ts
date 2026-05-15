@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from "react";
 
-/** Hora actual del dispositivo; se actualiza cada minuto. */
-export function useDeviceDateTime(): Date {
-  const [now, setNow] = useState(() => new Date());
+/**
+ * Hora del dispositivo. Devuelve `null` en SSR y en el primer render del cliente
+ * para evitar hydration mismatch; luego se actualiza cada minuto.
+ */
+export function useDeviceDateTime(): Date | null {
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
     const update = () => setNow(new Date());
+    update();
     const interval = setInterval(update, 60_000);
     return () => clearInterval(interval);
   }, []);

@@ -16,8 +16,8 @@ export default function Header() {
     <header className="header">
       <div className="header__inner">
         <div className="header__time">
-          <span className="header__clock">
-            {formatDeviceDateTime(now, "header")}
+          <span className="header__clock" suppressHydrationWarning>
+            {now ? formatDeviceDateTime(now, "header") : "\u00a0"}
           </span>
           {loading ? (
             <span className="header__loading">—</span>

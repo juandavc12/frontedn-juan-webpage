@@ -22,8 +22,8 @@ export default function WeatherHero() {
 
   return (
     <section className="weather-hero">
-      <p className="weather-hero__datetime">
-        {formatDeviceDateTime(now, "hero")}
+      <p className="weather-hero__datetime" suppressHydrationWarning>
+        {now ? formatDeviceDateTime(now, "hero") : "\u00a0"}
       </p>
 
       <div className="weather-hero__main">
